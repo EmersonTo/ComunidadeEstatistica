@@ -28,11 +28,25 @@ dados_simples$frequencia_relativa_simples = frequencia_relativa_simples
 
 
 #Frequência relativa acumulada (frac)
+frequencia_relativa_acumulada = frequencia_acumulada / sum(frequencia_simples)
+
+#Adicionando matriz
+dados_simples$frequencia_relativa_acumulada = frequencia_relativa_acumulada
+
+#Achando automaticamente a frequência simples e relatativa
+describe(idade)
 
 
+##################################################################
+# FAZENDO DE MANEIRA RESUMIDA ####################################
 
+install.packages("dplyr")
+library(dplyr)
 
-
+dados_simples_tidy = dados_simples %>% 
+                    mutate(frequencia_acumulada = cumsum(Freq),
+                           frequencia_relativa_simples = Freq/sum(Freq),
+                           frequencia_relativa_acumulada = cumsum(frequencia_relativa_simples))
 
 
 
